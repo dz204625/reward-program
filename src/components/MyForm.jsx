@@ -1,0 +1,31 @@
+import * as React from "react";
+
+export default class MyForm extends React.Component{
+
+  onClick(event) {
+   
+    event.preventDefault();
+    const pro = this.inputProduct.value;
+    const price = this.inputPrice.value;
+   
+    this.props.onSubmit(pro, price);
+  
+  }
+
+
+
+
+  render(){
+
+    return(
+      <form  ref={form => this.form = form} onSubmit={this.onClick.bind(this)}>
+        <label for="product">Product:</label>
+        <input  ref = {input => this.inputProduct = input} type="text" id="product" name="product" ></input>
+        <label for="price">Price:</label>
+        <input ref = {input => this.inputPrice = input} type="text" id="price" name="price"  ></input>
+        <input  type="submit" value="Add Transction"></input>
+      </form> 
+    )
+
+  }
+}
