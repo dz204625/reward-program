@@ -3,11 +3,7 @@ import React from "react";
 export default class Calculate extends React.Component {
  
     render(){ 
-        console.log(this.props)
-        this.displayMonthlyReward();
-     
-      
-        
+        console.log(this.props)   
         return(
 
     
