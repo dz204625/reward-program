@@ -29,6 +29,8 @@ class App extends React.Component {
               
               ],
               monthlyReward: [],
+              months:[],
+             
             };
     this.getAll3MonthsTransaction = this.getAll3MonthsTransaction.bind(this);
     this.getMonthlyReward = this.getMonthlyReward.bind(this);
@@ -93,24 +95,36 @@ getAll3MonthsTransaction(){
 }
 
 getMonthlyReward(){
- /*console.log(this.state.rows);
- let years = [];
- this.state.rows.forEach(row=>years.push((new Date(row.date)).getFullYear()));
- let yearSet = new Set(years);
- console.log(yearSet.entries);*/
- let last12MonthRewardsInDesc = [];
- for(let i=0; i<12; i++) {
-     let filteredList = this.state.rows.filter(trans => (new Date(trans.date)).getMonth() == (new Date).getMonth() - i );
-     last12MonthRewardsInDesc[i] = filteredList.reduce((acc,key)=>key.reward+acc,0);
- }
- console.log(last12MonthRewardsInDesc);
 
+
+  let last12MonthRewardsInDesc = [];
+  let months =[];
+ 
+  for(let i=0; i<12; i++) {
+      let monthsIndex = (new Date).getMonth() - i; 
+      let filteredList = this.state.rows.filter(trans => (new Date(trans.date)).getMonth() == monthsIndex );
+      last12MonthRewardsInDesc[i] = filteredList.reduce((acc,key)=>key.reward+acc,0);
+      if(monthsIndex >= 0){
+        months[i] = monthsIndex;
+      };
+
+      if(monthsIndex < 0){
+        months[i] = monthsIndex + 12;
+      }
+     
+     
+      
+
+  }
+ 
  this.setState({
    monthlyReward: last12MonthRewardsInDesc,
- })
-
+   months: months,
+  
+ });
 
 }
+
 
 
 render(){
@@ -121,7 +135,7 @@ render(){
         <List  onClick = {this.getAll3MonthsTransaction}/>
         <Table rows={this.state.rows} />
         <h3>Total Rewards: {this.calTotalReward()} pts</h3>
-        <Calculate onClick = {this.getMonthlyReward} reward = {this.state.monthlyReward} />
+        <Calculate onClick = {this.getMonthlyReward} reward = {this.state.monthlyReward} months = {this.state.months} />
         <MyForm onSubmit = {this.onSubmit.bind(this)} />  
       </div>
 
