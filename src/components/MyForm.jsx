@@ -23,7 +23,7 @@ export default class MyForm extends React.Component{
         <input  ref = {input => this.inputProduct = input} type="text" id="product" name="product" ></input>
         <label for="price">Price:</label>
         <input ref = {input => this.inputPrice = input} type="text" id="price" name="price"  ></input>
-        <input  type="submit" value="Add Transction"></input>
+        <input style = {{ margin: "0 1vw"}} type="submit" value="Add Transction"></input>
       </form> 
     )
 

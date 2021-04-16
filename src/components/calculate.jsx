@@ -9,7 +9,7 @@ export default class Calculate extends React.Component {
     
             <div>
                 <label for="months">Monthly Rewards:</label>
-                <input onClick = {this.props.onClick} type="button" value="Submit"></input>
+                <input style = {{ margin: "0 1vw"}} onClick = {this.props.onClick} type="button" value="Get Monthly Reward"></input>
                 <ul>
                     
                     {this.props.reward.map((rew, index) => {
