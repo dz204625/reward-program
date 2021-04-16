@@ -3,6 +3,7 @@ import MyForm  from "./components/MyForm";
 import Table from "./components/table";
 import List from "./components/list";
 import Calculate from "./components/calculate";
+import TransactionService from "./services/transactionServices";
 
 
 class App extends React.Component {
@@ -14,7 +15,7 @@ class App extends React.Component {
             amount: null,
             reward: null,
             rows : [
-              {date: "3/28/2021" , product: "p1", amount: 120, reward: 90},
+             /* {date: "3/28/2021" , product: "p1", amount: 120, reward: 90},
               {date: "3/27/2021" , product: "p1", amount: 120, reward: 90},
               {date: "2/28/2021" , product: "p2", amount: 50, reward: 0 },
               {date: "2/27/2021" , product: "p2", amount: 50, reward: 0 },
@@ -24,7 +25,7 @@ class App extends React.Component {
               {date: "1/19/2021" , product: "p3", amount: 100, reward: 50},
               {date: "1/17/2021" , product: "p3", amount: 100, reward: 50},
               {date: "1/15/2021" , product: "p3", amount: 100, reward: 50},
-              {date: "12/19/2020" , product: "p3", amount: 100, reward: 50},
+              {date: "12/19/2020" , product: "p3", amount: 100, reward: 50},*/
               
               
               ],
@@ -37,6 +38,11 @@ class App extends React.Component {
             
   }
 
+  componentDidMount(){
+    //console.log("DidMount",TransactionService.getTransactions())
+    TransactionService.getTransactions().then(res => this.setState({rows: res.data}));
+  }
+
 
 onSubmit(pro, price){
   console.log(pro, price);
@@ -44,9 +50,11 @@ onSubmit(pro, price){
      {
       product: pro,
       amount: price,
-    }
-  , this.addTransaction)
+    }, this.addTransaction
+  )
 }
+
+
 calReward(price){
   if (price >=50 && price < 100) {
     return price-50;
@@ -70,7 +78,7 @@ addTransaction(){
     reward : this.calReward(this.state.amount),
   }
 
-  this.state.rows.unshift(transaction); 
+  TransactionService.saveTransaction(transaction);
   
 }
 
@@ -128,9 +136,12 @@ getMonthlyReward(){
 
 
 render(){
+  const style ={
+    padding: "0 10vw 20vw",
+  }
  
   return (
-    <div>
+    <div style = {style}>
         <h1>Rewards Summary</h1>
         <List  onClick = {this.getAll3MonthsTransaction}/>
         <Table rows={this.state.rows} />
