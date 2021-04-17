@@ -15,12 +15,13 @@ Given a record of every transaction during a three month period, calculate the r
 
 ## Technologies
 1. Java
-2. Spring Boot
-3. MySQL
-4. React
-5. Axios 
-6. JPA
-7. RestAPI
+2. Javascript 
+3. Spring Boot
+4. MySQL
+5. React
+6. Axios 
+7. JPA
+8. RestAPI
 
 # Getting Started with Create React App
 
