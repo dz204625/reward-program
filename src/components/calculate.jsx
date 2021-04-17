@@ -7,8 +7,8 @@ export default class Calculate extends React.Component {
         return(
 
     
-            <div>
-                <label for="months">Monthly Rewards:</label>
+            <div style = {{marginTop: "1vw"}}>
+                <label for="months"><b>Monthly Rewards:</b></label>
                 <input style = {{ margin: "0 1vw"}} onClick = {this.props.onClick} type="button" value="Get Monthly Reward"></input>
                 <ul>
                     
