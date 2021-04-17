@@ -14,23 +14,9 @@ class App extends React.Component {
             product: null,
             amount: null,
             reward: null,
-            rows : [
-             /* {date: "3/28/2021" , product: "p1", amount: 120, reward: 90},
-              {date: "3/27/2021" , product: "p1", amount: 120, reward: 90},
-              {date: "2/28/2021" , product: "p2", amount: 50, reward: 0 },
-              {date: "2/27/2021" , product: "p2", amount: 50, reward: 0 },
-              {date: "2/26/2021" , product: "p2", amount: 50, reward: 0 },
-              {date: "2/25/2021" , product: "p2", amount: 50, reward: 0 },
-              {date: "1/20/2021" , product: "p3", amount: 100, reward: 50},
-              {date: "1/19/2021" , product: "p3", amount: 100, reward: 50},
-              {date: "1/17/2021" , product: "p3", amount: 100, reward: 50},
-              {date: "1/15/2021" , product: "p3", amount: 100, reward: 50},
-              {date: "12/19/2020" , product: "p3", amount: 100, reward: 50},*/
-              
-              
-              ],
-              monthlyReward: [],
-              months:[],
+            rows : [],
+            monthlyReward: [],
+            months:[],
              
             };
     this.getAll3MonthsTransaction = this.getAll3MonthsTransaction.bind(this);
@@ -40,18 +26,16 @@ class App extends React.Component {
 
   componentDidMount(){
     //console.log("DidMount",TransactionService.getTransactions())
-    TransactionService.getTransactions().then(res => this.setState({rows: res.data}));
+    TransactionService.getTransactions().then(res => this.setState({rows: res.data.reverse()}));
   }
 
 
 onSubmit(pro, price){
-  console.log(pro, price);
-  this.setState(
-     {
-      product: pro,
-      amount: price,
-    }, this.addTransaction
-  )
+ // console.log(pro, price);
+ TransactionService.getTransactions().then(res => this.setState({
+    product: pro,
+    amount: price,
+    rows: res.data.reverse()}, this.addTransaction));
 }
 
 
@@ -91,7 +75,7 @@ calTotalReward(){
 
 
 getAll3MonthsTransaction(){
-  console.log("clicked");
+  //console.log("clicked");
   let today = new Date();
   const threeOldDate = today.setMonth(today.getMonth() - 3);
   let filteredList = this.state.rows.filter(trans => new Date(trans.date) > threeOldDate);
