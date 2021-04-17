@@ -6,12 +6,16 @@ A customer receives 2 points for every dollar spent over $100 in each transactio
 (e.g. a $120 purchase = 2x$20 + 1x$50 = 90 points).
 Given a record of every transaction during a three month period, calculate the reward points earned for each customer per month and total.
 
+![rewards program](https://user-images.githubusercontent.com/33336597/115099945-ed985f80-9efe-11eb-8b12-3798b8cb89f4.gif)
+
 ## Features
 1. Add transactions
 2. Display total rewards
 3. Display monthly rewards
 4. List three months transactions
 5. Calculate rewards by giving rules
+6. Save data to database
+7. Retrive data from database
 
 ## Technologies
 1. Java
@@ -22,6 +26,9 @@ Given a record of every transaction during a three month period, calculate the r
 6. Axios 
 7. JPA
 8. RestAPI
+
+###NOTES:
+This is the ui part of the program, you can get the api here: https://github.com/dz204625/reward-program-api
 
 # Getting Started with Create React App
 
