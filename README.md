@@ -18,14 +18,9 @@ Given a record of every transaction during a three month period, calculate the r
 7. Retrive data from database
 
 ## Technologies
-1. Java
-2. Javascript 
-3. Spring Boot
-4. MySQL
-5. React
-6. Axios 
-7. JPA
-8. RestAPI
+1. Javascript 
+2. React
+3. Axios 
 
 ###NOTES:
 This is the ui part of the program, you can get the api here: https://github.com/dz204625/reward-program-api
