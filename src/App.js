@@ -130,8 +130,9 @@ render(){
         <List  onClick = {this.getAll3MonthsTransaction}/>
         <Table rows={this.state.rows} />
         <h3>Total Rewards: {this.calTotalReward()} pts</h3>
-        <Calculate onClick = {this.getMonthlyReward} reward = {this.state.monthlyReward} months = {this.state.months} />
         <MyForm onSubmit = {this.onSubmit.bind(this)} />  
+        <Calculate onClick = {this.getMonthlyReward} reward = {this.state.monthlyReward} months = {this.state.months} />
+        
       </div>
 
     

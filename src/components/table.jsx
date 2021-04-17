@@ -23,10 +23,10 @@ export default function BasicTable({rows}) {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Products</TableCell>
-            <TableCell>Amount</TableCell>
-            <TableCell>Reward</TableCell>
+            <TableCell><b>Date</b></TableCell>
+            <TableCell><b>Products</b></TableCell>
+            <TableCell><b>Amount</b></TableCell>
+            <TableCell><b>Reward</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
