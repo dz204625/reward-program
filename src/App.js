@@ -21,6 +21,7 @@ class App extends React.Component {
             };
     this.getAll3MonthsTransaction = this.getAll3MonthsTransaction.bind(this);
     this.getMonthlyReward = this.getMonthlyReward.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
             
   }
 
@@ -32,10 +33,10 @@ class App extends React.Component {
 
 onSubmit(pro, price){
  // console.log(pro, price);
- TransactionService.getTransactions().then(res => this.setState({
-    product: pro,
-    amount: price,
-    rows: res.data.reverse()}, this.addTransaction));
+  this.setState({
+        product: pro,
+        amount: price,
+        }, this.addTransaction);
 }
 
 
@@ -130,7 +131,7 @@ render(){
         <List  onClick = {this.getAll3MonthsTransaction}/>
         <Table rows={this.state.rows} />
         <h3>Total Rewards: {this.calTotalReward()} pts</h3>
-        <MyForm onSubmit = {this.onSubmit.bind(this)} />  
+        <MyForm onSubmit = {this.onSubmit} />  
         <Calculate onClick = {this.getMonthlyReward} reward = {this.state.monthlyReward} months = {this.state.months} />
         
       </div>
