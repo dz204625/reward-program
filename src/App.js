@@ -25,14 +25,19 @@ class App extends React.Component {
             
   }
 
-  componentDidMount(){
+//load service 
+loadService(){
+  return TransactionService.getTransactions().then(res => this.setState({rows: res.data.reverse()}));
+}
+
+//call api
+componentDidMount(){
     //console.log("DidMount",TransactionService.getTransactions())
-    TransactionService.getTransactions().then(res => this.setState({rows: res.data.reverse()}));
+    this.loadService();
   }
 
-
+//submit the add transaction form
 onSubmit(pro, price){
- // console.log(pro, price);
   this.setState({
         product: pro,
         amount: price,
@@ -49,10 +54,9 @@ calReward(price){
   return 0;
 }
 
-
+//add transaction
 addTransaction(){
 
-  //const mydate = new Date().toISOString().split('T')[0];
   const mydate = new Date().toLocaleDateString()
 
   let transaction = {
@@ -63,16 +67,24 @@ addTransaction(){
     reward : this.calReward(this.state.amount),
   }
 
-  TransactionService.saveTransaction(transaction);
-  
+  TransactionService.saveTransaction(transaction).then(()=>this.loadService());
 }
 
+calReward(price){
+  if (price >=50 && price < 100) {
+    return price-50;
+  } else if (price >100){
+    return (2*(price-100) + 50);
+  }
+  return 0;
+}
 
 calTotalReward(){
   let total=0;
   this.state.rows.forEach(row=>total+=row.reward);
   return total;
 }
+
 
 
 getAll3MonthsTransaction(){
