@@ -21,6 +21,7 @@ class App extends React.Component {
             };
     this.getAll3MonthsTransaction = this.getAll3MonthsTransaction.bind(this);
     this.getMonthlyReward = this.getMonthlyReward.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
             
   }
 
@@ -41,6 +42,16 @@ onSubmit(pro, price){
         product: pro,
         amount: price,
         }, this.addTransaction);
+}
+
+
+calReward(price){
+  if (price >=50 && price < 100) {
+    return price-50;
+  } else if (price >100){
+    return (2*(price-100) + 50);
+  }
+  return 0;
 }
 
 //add transaction
@@ -132,7 +143,7 @@ render(){
         <List  onClick = {this.getAll3MonthsTransaction}/>
         <Table rows={this.state.rows} />
         <h3>Total Rewards: {this.calTotalReward()} pts</h3>
-        <MyForm onSubmit = {this.onSubmit.bind(this)} />  
+        <MyForm onSubmit = {this.onSubmit} />  
         <Calculate onClick = {this.getMonthlyReward} reward = {this.state.monthlyReward} months = {this.state.months} />
         
       </div>
